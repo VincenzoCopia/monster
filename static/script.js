@@ -340,13 +340,13 @@ var can = [
     }, {
         name: 'blue_ice',
         value: 3,
-        image: "waiting.webp",
+        image: "blue_ice.webp",
         title: "BLUE ICE",
         text: ""
     }, {
         name: 'white_pineapple',
         value: 3,
-        image: "waiting.webp",
+        image: "white_pineapple.webp",
         title: "WHITE PINEAPPLE ",
         text: ""
     }, {
