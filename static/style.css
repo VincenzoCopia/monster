@@ -1,0 +1,98 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    /* background-color: #343a40; Dark gray background */
+    background-image: url('sfondo.webp');
+    /*background-size: cover;            /* Cover the entire page */
+    background-position: center;            /* Center the background image */
+    /*background-repeat: no-repeat;            /* Do not repeat the image */
+    color: #f8f9fa;
+    /* Light font color for visibility */
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    /* Centering the container */
+    padding-top: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* .my-5 { */
+    /* margin-top: 20px;
+    margin-bottom: 20px; */
+/* } */
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;           /* Space between columns */
+}
+
+.col {
+    flex: 0 1 11%;           /* Each card will take roughly one-third of the container width */
+    margin-bottom: 20px;            /* Margin for bottom spacing */
+}
+
+.card {
+    background-color: #212529;            /* Dark card backgrounds */
+    color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    /*overflow: hidden;            /* Ensures no content spills outside */
+    padding: 5px;
+    margin: 5px;
+    background-image: radial-gradient(circle, white, black);
+}
+
+.card-img-top {
+    width: 50px;
+    /* Responsive image width */
+    height: auto;
+    padding: 8px;
+}
+.card-text {
+    overflow: hidden;       /* Hide overflow text */
+    text-overflow: ellipsis; /* Show ellipsis (...) when text overflows */
+    /*white-space: nowrap;    /* Prevent text from wrapping to the next line */
+    display: block;         /* Make sure the element behaves as a block */
+    /*width: 100%;            /* Set a specific width if necessary */
+}
+
+/* .btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #ffffff;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    cursor: pointer;
+} */
+
+.btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+
+/* Style for the footer */
+.site-footer {
+    background-color: #212529; /* Dark background for the footer */
+    color: white; /* White text color */
+    text-align: center; /* Center-align text */
+    padding: 20px 0; /* Padding around the text */
+    margin-top: 30px; /* Space between the footer and the content above it */
+}
+
+
