@@ -344,7 +344,7 @@ var can = [
         title: "BLUE ICE",
         text: ""
     }, {
-        name: 'white_pinepple',
+        name: 'white_pineapple',
         value: 3,
         image: "waiting.webp",
         title: "WHITE PINEAPPLE ",
