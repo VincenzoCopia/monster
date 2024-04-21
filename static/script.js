@@ -338,6 +338,18 @@ var can = [
         title: "EXTRA STRENGTH 3",
         text: ""
     }, {
+        name: 'blue_ice',
+        value: 1,
+        image: "waiting.webp",
+        title: "BLUE ICE",
+        text: ""
+    }, {
+        name: 'white_pinepple',
+        value: 1,
+        image: "waiting.webp",
+        title: "WHITE PINEAPPLE ",
+        text: ""
+    }, {
         name: 'm',
         value: 1,
         image: "waiting.webp",
