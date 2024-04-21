@@ -1,7 +1,7 @@
 {
     "name": "Monster Collection",
     "short_name": "Monster",
-    "start_url": "/monster/index.html",
+    "start_url": "./index.html",
     "display": "standalone",
     "background_color": "#FFFFFF",
     "description": "Monster Collection PWA",
