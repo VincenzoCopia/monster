@@ -213,7 +213,7 @@ var can = [
         text: ""
     }, {
         name: 'white_pineapple',
-        value: 1,
+        value: 3,
         image: "white_pineapple.webp",
         title: "WHITE PINEAPPLE",
         text: ""
@@ -342,12 +342,6 @@ var can = [
         value: 3,
         image: "blue_ice.webp",
         title: "BLUE ICE",
-        text: ""
-    }, {
-        name: 'white_pineapple',
-        value: 3,
-        image: "white_pineapple.webp",
-        title: "WHITE PINEAPPLE ",
         text: ""
     }, {
         name: 'm',
