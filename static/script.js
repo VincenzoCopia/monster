@@ -344,6 +344,12 @@ var can = [
         title: "BLUE ICE",
         text: ""
     }, {
+        name: 'wild_berry_tea',
+        value: 6,
+        image: "waiting.webp",
+        title: "WILD BERRY TEA",
+        text: ""
+    }, {
         name: 'm',
         value: 1,
         image: "waiting.webp",
