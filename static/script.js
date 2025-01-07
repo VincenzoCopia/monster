@@ -346,7 +346,7 @@ var can = [
     }, {
         name: 'wild_berry_tea',
         value: 6,
-        image: "wawild_berry_teaiting.webp",
+        image: "wild_berry_tea.webp",
         title: "WILD BERRY TEA",
         text: ""
     }, {
