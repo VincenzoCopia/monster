@@ -1,13 +1,13 @@
 const CACHE_NAME = 'monster-cache-v1';
 const urlsToCache = [
     './',
-    './index.html',
-    './static/style.css',
-    './static/script.js',
-    './static/favicon-32x32.png',
-    './static/sfondo.webp',
-    './manifest.json',
-    './images/waiting.webp'
+    // './index.html',
+    // './static/style.css',
+    // './static/script.js',
+    // './static/favicon-32x32.png',
+    // './static/sfondo.webp',
+    // './manifest.json',
+    // './images/waiting.webp'
 ];
 
 self.addEventListener('install', event => {

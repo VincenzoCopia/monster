@@ -454,14 +454,9 @@ function filterItems(searchTerm) {
     const currentView = document.querySelector('.view-toggle-btn.active').getAttribute('data-view');
     const container = currentView === 'grid' ? '#row' : '#row-list';
     
-    // Log del termine di ricerca
-    console.log('Termine di ricerca:', searchTerm);
-    console.log('Vista corrente:', currentView);
-    
     // Seleziona tutti gli elementi con classe 'col my-3'
     const items = document.querySelectorAll(`${container} .col`);
     let visibleCount = 0;
-    let hiddenCards = [];
     
     // Normalizza il termine di ricerca
     const normalizedSearchTerm = searchTerm.toLowerCase().trim();
@@ -474,26 +469,14 @@ function filterItems(searchTerm) {
         
         if (titleElement) {
             const title = titleElement.textContent.toLowerCase().trim();
-            console.log(`Titolo trovato (${currentView}):`, title);
-            
-            // Verifica se il titolo contiene il termine di ricerca
             const shouldShow = normalizedSearchTerm === '' || title.includes(normalizedSearchTerm);
             
             item.style.display = shouldShow ? '' : 'none';
             if (shouldShow) {
                 visibleCount++;
-            } else {
-                hiddenCards.push(title);
             }
-        } else {
-            console.log(`Elemento titolo non trovato (${currentView}) per:`, item.innerHTML);
         }
     });
-
-    // Log delle card nascoste
-    if (hiddenCards.length > 0) {
-        console.log('Card non comprese nella ricerca:', hiddenCards);
-    }
 
     // Mostra un messaggio se non ci sono risultati
     const noResultsMessage = document.getElementById('noResultsMessage') || (() => {

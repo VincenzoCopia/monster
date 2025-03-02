@@ -24,7 +24,15 @@ html {
     text-align: center;
 }
 
-/* .my-5 { */
+.titolo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* ..text-center {
+    text-align: center;
+}-5 { */
     /* margin-top: 20px;
     margin-bottom: 20px; */
 /* } */
@@ -66,6 +74,20 @@ html {
     width: 100%;             /* Occupa tutta la larghezza disponibile */
     text-align: center;      /* Centra il testo */
     padding: 5px;
+}
+
+/* Stile per i titoli nella vista griglia */
+.card-body h5.card-text {
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Stile per i titoli nella vista lista */
+.card-text.card-title {
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .card-text {
