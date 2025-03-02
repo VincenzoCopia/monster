@@ -424,37 +424,25 @@ function setupViewToggle() {
     const viewButtons = document.querySelectorAll('.view-toggle-btn');
     let currentView = 'grid';
 
-    console.log('🎯 Setup vista - elementi trovati:', {
-        gridView: !!gridView,
-        listView: !!listView,
-        buttons: viewButtons.length
-    });
-
     viewButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const view = btn.getAttribute('data-view');
-            console.log('🔄 Cambio vista richiesto:', view);
             
             viewButtons.forEach(b => b.classList.remove('active'));
-            console.log('✅ Active rimosso da tutti i bottoni');
             
             btn.classList.add('active');
-            console.log('✅ Active aggiunto a:', view);
             
             if (view === 'grid') {
                 gridView.style.display = 'block';
                 listView.style.display = 'none';
                 currentView = 'grid';
-                console.log('📊 Attivata vista griglia');
             } else {
                 gridView.style.display = 'none';
                 listView.style.display = 'block';
                 currentView = 'list';
-                console.log('📝 Attivata vista lista');
             }
             
             if (searchInput) {
-                console.log('🔍 Riapplico il filtro con valore:', searchInput.value);
                 filterItems(searchInput.value);
             }
         });
@@ -463,49 +451,36 @@ function setupViewToggle() {
 
 // Funzione separata per il filtro
 function filterItems(searchTerm) {
-    console.log('🔍 Inizio filtro con termine:', searchTerm);
-    
     const currentView = document.querySelector('.view-toggle-btn.active').getAttribute('data-view');
-    console.log('📋 Vista corrente:', currentView);
-    
     const container = currentView === 'grid' ? '#row' : '#row-list';
     const selector = currentView === 'grid' ? '.col' : '.list-item';
-    console.log('🎯 Selettori:', { container, selector });
     
     const items = document.querySelectorAll(`${container} ${selector}`);
-    console.log('📦 Elementi trovati:', items.length);
-    
     let visibleCount = 0;
+    
     items.forEach(item => {
         const titleElement = item.querySelector('.card-title, .list-title');
-        console.log('🏷️ Elemento:', item.id, 'ha titolo?', !!titleElement);
         
         if (titleElement) {
             const title = titleElement.textContent.toLowerCase();
             const shouldShow = title.includes(searchTerm.toLowerCase());
-            console.log('📝 Titolo:', title, 'include', searchTerm.toLowerCase(), '?', shouldShow);
             
             if (shouldShow) {
                 item.style.display = '';
                 visibleCount++;
-                console.log('✅ Mostro:', item.id);
             } else {
                 item.style.display = 'none';
-                console.log('❌ Nascondo:', item.id);
             }
         }
     });
-    console.log('📊 Elementi visibili dopo il filtro:', visibleCount);
 }
 
 // Funzione per la ricerca
 function setupSearch() {
     const searchInput = document.getElementById('searchInput');
-    console.log('🎯 Setup ricerca - input trovato:', !!searchInput);
     
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
-            console.log('🔄 Input ricerca cambiato:', e.target.value);
             filterItems(e.target.value);
         });
     }

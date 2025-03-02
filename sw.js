@@ -14,11 +14,10 @@ self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(cache => {
-                console.log('🚀 Cache aperta con successo');
                 return cache.addAll(urlsToCache);
             })
             .catch(error => {
-                console.error('❌ Errore apertura cache:', error);
+                // Gestione silenziosa degli errori
             })
     );
 });
@@ -29,7 +28,6 @@ self.addEventListener('fetch', event => {
             .then(response => {
                 // Cache hit - return response
                 if (response) {
-                    console.log('✅ Risorsa trovata in cache:', event.request.url);
                     return response;
                 }
 
@@ -40,7 +38,6 @@ self.addEventListener('fetch', event => {
                     response => {
                         // Check if we received a valid response
                         if (!response || response.status !== 200 || response.type !== 'basic') {
-                            console.log('⚠️ Risposta non valida per:', event.request.url);
                             return response;
                         }
 
@@ -49,14 +46,12 @@ self.addEventListener('fetch', event => {
 
                         caches.open(CACHE_NAME)
                             .then(cache => {
-                                console.log('💾 Salvo in cache:', event.request.url);
                                 cache.put(event.request, responseToCache);
                             });
 
                         return response;
                     }
                 ).catch(error => {
-                    console.error('❌ Errore fetch:', error);
                     return caches.match('./images/waiting.webp');
                 });
             })
