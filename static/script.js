@@ -351,7 +351,7 @@ var can = [
         text: ""
     }, {
         name: 'm',
-        value: 1,
+        value: 0,
         image: "waiting.webp",
         title: " ",
         text: ""
