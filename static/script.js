@@ -356,5 +356,175 @@ var can = [
         title: " ",
         text: ""
     }
-
 ];
+
+// Funzione per inizializzare la collezione
+function initializeCollection() {
+    var count = 0;
+    var value = 0;
+
+    can.forEach(function (car) {
+        // Crea elemento per la vista griglia
+        var gridFragment = `
+            <div class="card">
+                <img src="images/waiting.webp" class="card-img-top" alt="..." id="grid-${car.image}">
+                <div class="card-body">
+                    <h5 class="card-text">${car.title}</h5>
+                </div>
+            </div>
+        `;
+
+        // Crea elemento per la vista lista
+        var listFragment = `
+            <div class="card">
+                <img src="images/waiting.webp" class="card-img-top" alt="..." id="list-${car.image}">
+                <div class="card-body">
+                    <div class="card-text card-title">${car.title}</div>
+                    <div class="card-text card-value">${car.value}</div>
+                    <div class="card-text card-country">${car.contry || '-'}</div>
+                </div>
+            </div>
+        `;
+
+        // Aggiungi alla vista griglia
+        var gridDiv = document.createElement('div');
+        gridDiv.id = 'grid-' + car.name;
+        gridDiv.className = 'col my-3';
+        gridDiv.innerHTML = gridFragment;
+        document.getElementById('row').appendChild(gridDiv);
+
+        // Aggiungi alla vista lista
+        var listDiv = document.createElement('div');
+        listDiv.id = 'list-' + car.name;
+        listDiv.className = 'col my-3';
+        listDiv.innerHTML = listFragment;
+        document.getElementById('row-list').appendChild(listDiv);
+
+        // Carica le immagini per entrambe le viste
+        ['grid-', 'list-'].forEach(prefix => {
+            var img = document.getElementById(prefix + car.image);
+            var imgPreload = new Image();
+            imgPreload.onload = function() {
+                img.src = 'images/' + car.image;
+            };
+            imgPreload.src = 'images/' + car.image;
+        });
+
+        count += 1;
+        value += Number(car.value);
+    });
+
+    document.getElementById("stat").innerHTML = `Statistiche: ${count} Pezzi : ${value} Valore`;
+}
+
+// Funzione per gestire il cambio vista
+function setupViewToggle() {
+    const gridView = document.getElementById('grid-view');
+    const listView = document.getElementById('list-view');
+    const viewButtons = document.querySelectorAll('.view-toggle-btn');
+    let currentView = 'grid';
+
+    console.log('🎯 Setup vista - elementi trovati:', {
+        gridView: !!gridView,
+        listView: !!listView,
+        buttons: viewButtons.length
+    });
+
+    viewButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const view = btn.getAttribute('data-view');
+            console.log('🔄 Cambio vista richiesto:', view);
+            
+            viewButtons.forEach(b => b.classList.remove('active'));
+            console.log('✅ Active rimosso da tutti i bottoni');
+            
+            btn.classList.add('active');
+            console.log('✅ Active aggiunto a:', view);
+            
+            if (view === 'grid') {
+                gridView.style.display = 'block';
+                listView.style.display = 'none';
+                currentView = 'grid';
+                console.log('📊 Attivata vista griglia');
+            } else {
+                gridView.style.display = 'none';
+                listView.style.display = 'block';
+                currentView = 'list';
+                console.log('📝 Attivata vista lista');
+            }
+            
+            if (searchInput) {
+                console.log('🔍 Riapplico il filtro con valore:', searchInput.value);
+                filterItems(searchInput.value);
+            }
+        });
+    });
+}
+
+// Funzione separata per il filtro
+function filterItems(searchTerm) {
+    console.log('🔍 Inizio filtro con termine:', searchTerm);
+    
+    const currentView = document.querySelector('.view-toggle-btn.active').getAttribute('data-view');
+    console.log('📋 Vista corrente:', currentView);
+    
+    const container = currentView === 'grid' ? '#row' : '#row-list';
+    const selector = currentView === 'grid' ? '.col' : '.list-item';
+    console.log('🎯 Selettori:', { container, selector });
+    
+    const items = document.querySelectorAll(`${container} ${selector}`);
+    console.log('📦 Elementi trovati:', items.length);
+    
+    let visibleCount = 0;
+    items.forEach(item => {
+        const titleElement = item.querySelector('.card-title, .list-title');
+        console.log('🏷️ Elemento:', item.id, 'ha titolo?', !!titleElement);
+        
+        if (titleElement) {
+            const title = titleElement.textContent.toLowerCase();
+            const shouldShow = title.includes(searchTerm.toLowerCase());
+            console.log('📝 Titolo:', title, 'include', searchTerm.toLowerCase(), '?', shouldShow);
+            
+            if (shouldShow) {
+                item.style.display = '';
+                visibleCount++;
+                console.log('✅ Mostro:', item.id);
+            } else {
+                item.style.display = 'none';
+                console.log('❌ Nascondo:', item.id);
+            }
+        }
+    });
+    console.log('📊 Elementi visibili dopo il filtro:', visibleCount);
+}
+
+// Funzione per la ricerca
+function setupSearch() {
+    const searchInput = document.getElementById('searchInput');
+    console.log('🎯 Setup ricerca - input trovato:', !!searchInput);
+    
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            console.log('🔄 Input ricerca cambiato:', e.target.value);
+            filterItems(e.target.value);
+        });
+    }
+}
+
+// Inizializzazione quando il DOM è caricato
+document.addEventListener('DOMContentLoaded', function() {
+    initializeCollection();
+    setupViewToggle();  // Prima il setup delle viste
+    setupSearch();      // Poi il setup della ricerca
+    
+    // Inizializza il Service Worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+                // Registration successful
+            })
+            .catch(function(err) {
+                // Registration failed
+            });
+    }
+});

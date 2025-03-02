@@ -8,7 +8,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
     <link rel="stylesheet" href="static/style.css">
     <link rel="manifest" href="manifest.json">
-    <script src="static/script.js"></script>
 </head>
 
 <body class="bg-secondary">
@@ -16,69 +15,38 @@
 
         <h1 class="fw-light text-center my-5">Monster Collection</h1>
 
-        <div class="container text-center">
+        <div class="view-toggles">
+            <button class="view-toggle-btn active" data-view="grid">Griglia</button>
+            <button class="view-toggle-btn" data-view="list">Lista</button>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Cerca per nome..." id="searchInput">
+        </div>
+
+        <div class="container text-center grid-view" id="grid-view">
             <div class="row g-2" id="row"></div>
+        </div>
+
+        <div class="container text-center list-view" id="list-view">
+            <div class="list-header">
+                <div></div>
+                <span>Nome</span>
+                <span>Valore</span>
+                <span>Paese</span>
+            </div>
+            <div class="row g-2" id="row-list"></div>
         </div>
     </div>
 
     <footer >
         <div class="site-footer">
             <p id="stat">....</p>
-            <p>© 2024 Enzo Monster Collection...</p>
+            <p>© 2025 Enzo Monster Collection...</p>
         </div>
     </footer>
 
-
-    <script>
-
-        var count = 0;
-        var value = 0;
-//${car.image}
-        can.forEach(function (car) {
-            var fragment = `
-                            <div class="card">
-                                <img src="images/waiting.webp" class="card-img-top" alt="..." id="${car.image}">
-                                <div class="card-body">
-                                    <h5 class="card-text">${car.title}</h5>
-                                </div>
-                            </div>
-                        `;
-
-            var iDiv = document.createElement('div');
-            iDiv.id = car.name;
-            iDiv.className = 'col my-3';
-            iDiv.innerHTML = fragment;
-
-            document.getElementById('row').appendChild(iDiv);
-
-            var img = document.getElementById(car.image);
-            var imgPreload = new Image();
-            imgPreload.onload = function() {
-                img.src = `images/`+car.image; // Cambia il src quando l'immagine è carica
-                console.log(car.image);
-            };
-            imgPreload.src = `images/`+car.image;
-
-
-
-            count += 1;
-            value += Number(car.value);
-        });
-
-        document.getElementById("stat").innerHTML = `Statistiche: ${count} Pezzi : ${value} Valore`;
-
-
-        /* SERVICE WORK */
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function () {
-                navigator.serviceWorker.register('/sw.js').then(function (registration) {
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, function (err) {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
-        }
-    </script>
+    <script src="./static/script.js" defer></script>
 </body>
 
 </html>
